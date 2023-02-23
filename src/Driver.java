@@ -18,34 +18,35 @@ public class Driver {
 		//User input scanner
 		Scanner scan = new Scanner(System.in);
 		
-		int opcion = 0;
-		System.out.println("Stack infix to postFix");
-		System.out.println("");
-	 	System.out.println("Que tipo de estructura desea usar?");		
-		System.out.println("1. Array");
-		System.out.println("2. ArrayList");
-		System.out.println("3. Lista");
-		System.out.println("");
-		System.out.println("ingrese su opcion:");
-		opcion = scan.nextInt();
+        int opcion = 0;
+        System.out.println("Stack infix to postFix");
+        System.out.println("");
+        System.out.println("Que tipo de estructura desea usar?");        
+        System.out.println("1. Array");
+        System.out.println("2. ArrayList");
+        System.out.println("3. Lista");
+        System.out.println("");
+        System.out.println("ingrese su opcion:");
+        opcion = scan.nextInt();
+        
+        IStack<String> postStack = null;
+        
+        if (opcion == 3) {
+            System.out.println("Stack infix to postFix");
+            System.out.println("");
+            System.out.println("Que tipo de Lista desea usar?");    
+            System.out.println("1 Linked List");
+            System.out.println("2 Double Linked list ");
+            System.out.println("");
+            System.out.println("ingrese su opcion:");
+            opcion = scan.nextInt();
+            
+            postStack = StackFactory.createStack(opcion + 2);
+            // se agrega 2 para igualar a las opciones de StackFactory
+        } else {
+            postStack = StackFactory.createStack(opcion);
+        }
 
-		
-		if (opcion == 3) {
-			System.out.println("Stack infix to postFix");
-			System.out.println("");
-		 	System.out.println("Que tipo de Lista desea usar?");	
-			System.out.println("1 Linked List");
-			System.out.println("2 Double Linked list ");
-			System.out.println("");
-			System.out.println("ingrese su opcion:");
-			opcion = scan.nextInt();
-
-			
-		}else {
-			//class Factory
-			
-		}
-		ArrayListStack<String> postStack = new ArrayListStack<>();
 		
 		//Convert infix to postfix
 		for (String item : itemsInFX) {
@@ -101,7 +102,7 @@ public class Driver {
 		calcPostfix(itemsPost,postStack);		
 	}
 
-	private static  void calcPostfix(String[] items, ArrayListStack<String> postStack) {
+	private static  void calcPostfix(String[] items, IStack<String> postStack) {
 		
 		Calculator calucu = new Calculator();
 		float item1; 
