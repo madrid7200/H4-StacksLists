@@ -7,17 +7,47 @@ public class Driver {
 		String archivo = "datos.txt";
 		String infix = "";
 		String postfix = "";
-		ARStack<String> postStack = new ARStack<>();
+		String result = "";
 		
-		
+		//Reads and splits textx from the .txt "datos.txt"
 		File file = new File(archivo);
 		Scanner sc = new Scanner(file);
-		
 		infix = sc.nextLine();
 		String[] itemsInFX = infix.split("");
 		
-		String result = "";
+		//User input scanner
+		Scanner scan = new Scanner(System.in);
 		
+		int opcion = 0;
+		System.out.println("Stack infix to postFix");
+		System.out.println("");
+	 	System.out.println("Que tipo de estructura desea usar?");		
+		System.out.println("1. Array");
+		System.out.println("2. ArrayList");
+		System.out.println("3. Lista");
+		System.out.println("");
+		System.out.println("ingrese su opcion:");
+		opcion = scan.nextInt();
+
+		
+		if (opcion == 3) {
+			System.out.println("Stack infix to postFix");
+			System.out.println("");
+		 	System.out.println("Que tipo de Lista desea usar?");	
+			System.out.println("1 Linked List");
+			System.out.println("2 Double Linked list ");
+			System.out.println("");
+			System.out.println("ingrese su opcion:");
+			opcion = scan.nextInt();
+
+			
+		}else {
+			//class Factory
+			
+		}
+		ARStack<String> postStack = new ARStack<>();
+		
+		//Convert infix to postfix
 		for (String item : itemsInFX) {
 			switch (item) {
 	        case "+":
@@ -44,8 +74,8 @@ public class Driver {
 	        	
 	        	result = postStack.pop();
 	        	
-	        	while (result !=")") {
-	        		postStack.push(result);
+	        	while (result !="(") {
+	        		postfix = postfix + result + " ";
 	        		result = postStack.pop();
 				}
 	        	
@@ -58,7 +88,12 @@ public class Driver {
 	        default: 
 	        	postfix = postfix + item + " ";
 	        	}
-			}	
+			}
+		int size = postStack.Size();
+	    for (int i = 0; i < size; i++) {
+	    	postStack.pop();
+	    }
+		
 		
 		postfix = sc.nextLine();
 		String[] itemsPost = postfix.split(" ");
