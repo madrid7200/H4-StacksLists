@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class ARStack<T> implements IStack<T> {
+public class ArrayListStack<T> implements IStack<T> {
 	
 	private ArrayList <T> current;
 	private int size;
 	
 	
-	public ARStack(){
+	public ArrayListStack(){
 		current = new ArrayList<>();
 		size = 0;
 	}

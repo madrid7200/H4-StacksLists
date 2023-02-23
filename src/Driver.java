@@ -45,7 +45,7 @@ public class Driver {
 			//class Factory
 			
 		}
-		ARStack<String> postStack = new ARStack<>();
+		ArrayListStack<String> postStack = new ArrayListStack<>();
 		
 		//Convert infix to postfix
 		for (String item : itemsInFX) {
@@ -101,7 +101,7 @@ public class Driver {
 		calcPostfix(itemsPost,postStack);		
 	}
 
-	private static  void calcPostfix(String[] items, ARStack<String> postStack) {
+	private static  void calcPostfix(String[] items, ArrayListStack<String> postStack) {
 		
 		Calculator calucu = new Calculator();
 		float item1; 
