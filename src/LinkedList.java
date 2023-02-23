@@ -1,36 +1,68 @@
-
 public class LinkedList<T> {
-	
-	public LNode<T> head;
-	public int size;
-	
-	//Adds a Node to the end of the LL
-	public void append(T value) {
-		//If the List is empty HEad and tail are assigned the New Node
-		if (head == null) {
-			head = new LNode<T>(value);
-			return;			
+
+	private LNode<T> head;
+	private LNode<T> tail;
+	private int size;
+
+	public LinkedList() {
+		head = null;
+		tail = null;
+		size = 0;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	public T first() {
+		if (isEmpty()) {
+			return null;
 		}
-		LNode<T> current = head;
-		while(current.next != null) {
-			current = current.next;
+		return head.getValue();
+	}
+
+	public T last() {
+		if (isEmpty()) {
+			return null;
 		}
-		current.next = new LNode<T>(value);
-		
+		return tail.getValue();
 	}
-	
-	//Adds a Node to the Start of the LL
-	public void prepend(T value) {
-		LNode newHead = new LNode<T>(value);
-		newHead.next = head;
-		head = newHead;
+
+	public void addFirst(T value) {
+		LNode<T> newLNode = new LNode<>(value);
+		newLNode.setNext(head);
+		head = newLNode;
+		if (isEmpty()) {
+			tail = head;
+		}
+		size++;
 	}
-	
-	public void remove(T value) {
-		
+
+	public void addLast(T value) {
+		LNode<T> newLNode = new LNode<>(value);
+		if (isEmpty()) {
+			head = newLNode;
+		} else {
+			tail.setNext(newLNode);
+		}
+		tail = newLNode;
+		size++;
 	}
-	
+
+	public T removeFirst() {
+		if (isEmpty()) {
+			return null;
+		}
+		T removedValue = head.getValue();
+		head = head.getNext();
+		size--;
+		if (isEmpty()) {
+			tail = null;
+		}
+		return removedValue;
+	}
 }
-
-
-
